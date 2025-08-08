@@ -26,4 +26,14 @@ class ResetPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+
+    // sobreescreve o método das regras de validação
+    protected function rules()
+    {
+        return [
+            'token' => 'required',
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|string|min:8|confirmed',
+        ];
+    }
 }
