@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __('Você está logado!') }}
+                </div>
+
+                <div class="card-footer">
+                    <a href="{{ route('tarefa.index') }}" class="btn btn-primary">Gerenciar Tarefas</a>
                 </div>
             </div>
         </div>
