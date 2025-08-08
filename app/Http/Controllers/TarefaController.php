@@ -18,7 +18,7 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->guard()->user()->id;
+        $user_id = auth()->user()->id;
         $tarefas = Tarefa::where('user_id', $user_id)
                         ->paginate(10);
         return view("tarefa.index", compact("tarefas"));
@@ -63,9 +63,14 @@ class TarefaController extends Controller
         }
 
         $dados = $request->all();
-        $dados['user_id'] = auth()->guard()->user()->id; // Adiciona o ID do usuário autenticado
+        $dados['user_id'] = auth()->user()->id; // Adiciona o ID do usuário autenticado
         $tarefa = Tarefa::create($dados);
 
+        if ($tarefa) {
+            Mail::to(auth()->user()->email)->send(new NovaTarefaMail($tarefa));
+        } else {
+            return redirect()->back()->with('error', 'Erro ao criar a tarefa. Por favor, tente novamente.');
+        }
 
         return redirect()->route('tarefa.index')->with('success', 'Tarefa criada com sucesso!');
     }
@@ -91,7 +96,7 @@ class TarefaController extends Controller
     public function edit(string $id)
     {
         $decryptId = Crypt::decrypt($id);
-        $tarefa = Tarefa::find($decryptId)->where('user_id', auth()->guard()->user()->id)->first();
+        $tarefa = Tarefa::find($decryptId)->where('user_id', auth()->user()->id)->first();
 
         if (!$tarefa) {
             return view('acesso-negado');
@@ -121,7 +126,7 @@ class TarefaController extends Controller
 
         $request->validate($regras, $feedback);
 
-        $tarefa = Tarefa::find($id)->where('user_id', auth()->guard()->user()->id)->first();
+        $tarefa = Tarefa::find($id)->where('user_id', auth()->user()->id)->first();
 
         // Valida se o usuário autenticado é o dono da tarefa
         if (!$tarefa) {
@@ -162,7 +167,7 @@ class TarefaController extends Controller
         $decryptId = Crypt::decrypt($id);
         $tarefa = Tarefa::find($decryptId);
 
-        if($tarefa->user_id !== auth()->guard()->user()->id) {
+        if($tarefa->user_id !== auth()->user()->id) {
             return view('acesso-negado');
         }
 
