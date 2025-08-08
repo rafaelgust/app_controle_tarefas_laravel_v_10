@@ -37,6 +37,7 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = auth()->user()->id;
         $regras = [
             'titulo' => 'required|min:3|max:100',
             'descricao' => 'max:500',
@@ -63,7 +64,7 @@ class TarefaController extends Controller
         }
 
         $dados = $request->all();
-        $dados['user_id'] = auth()->user()->id; // Adiciona o ID do usuário autenticado
+        $dados['user_id'] = $user_id; // Adiciona o ID do usuário autenticado
         $tarefa = Tarefa::create($dados);
 
         if ($tarefa) {

@@ -38,9 +38,10 @@ class NovaTarefaMail extends Mailable
     {
         return new Content(
             markdown: 'emails.nova-tarefa',
-        )->with([
+            with: [
             'tarefa' => $this->tarefa,
-        ]);
+            ],
+        );
     }
 
     /**
