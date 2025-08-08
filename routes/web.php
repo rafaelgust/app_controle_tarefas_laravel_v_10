@@ -22,6 +22,9 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
+
+Route::get('tarefa/export', [TarefaController::class, 'exportacao'])->name('tarefa.export');
+
 Route::middleware(['verified'])
     ->group(function () {
         Route::get('/home', [HomeController::class, 'index'])

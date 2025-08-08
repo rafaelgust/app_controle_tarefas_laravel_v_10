@@ -9,6 +9,9 @@
                 </div>
                 <div class="card-body p-4">
                     <div class="mb-3 text-end">
+                        <a href="{{ route('tarefa.export') }}" class="btn btn-warning fw-bold">
+                            <i class="bi bi-file-earmark-spreadsheet me-2"></i> Exportar Tarefas
+                        </a>
                         <a href="{{ route('tarefa.create') }}" class="btn btn-success fw-bold">
                             <i class="bi bi-plus-circle me-2"></i> Nova Tarefa
                         </a>
