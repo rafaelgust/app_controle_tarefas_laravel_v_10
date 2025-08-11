@@ -8,16 +8,34 @@
                     <h3 class="mb-0 fw-bold">Lista de Tarefas</h3>
                 </div>
                 <div class="card-body p-4">
-                    <div class="mb-3 text-end">
-                        <a href="{{ route('tarefa.export', ['extensao' => 'csv']) }}" class="btn btn-warning fw-bold">
-                            <i class="bi bi-file-earmark-spreadsheet me-2"></i> Exportar Tarefas em CSV
-                        </a>
-                        <a href="{{ route('tarefa.export', ['extensao' => 'xlsx']) }}" class="btn btn-primary fw-bold">
-                            <i class="bi bi-file-earmark-spreadsheet me-2"></i> Exportar Tarefas em XLSX
-                        </a>
-                        <a href="{{ route('tarefa.export', ['extensao' => 'pdf']) }}" class="btn btn-primary fw-bold">
-                            <i class="bi bi-file-earmark-spreadsheet me-2"></i> Exportar Tarefas em PDF
-                        </a>
+                    <div class="mb-4 d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <div class="btn-group" role="group" aria-label="Exportar tarefas">
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle fw-bold" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-file-earmark-spreadsheet me-2"></i> Exportar Tarefas
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('tarefa.export', ['extensao' => 'csv']) }}">
+                                        <i class="bi bi-filetype-csv me-2"></i>CSV
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('tarefa.export', ['extensao' => 'xlsx']) }}">
+                                        <i class="bi bi-file-earmark-excel me-2"></i>XLSX
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('tarefa.export', ['extensao' => 'pdf']) }}">
+                                        <i class="bi bi-file-earmark-pdf me-2"></i>PDF
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('tarefa.exportar') }}">
+                                        <i class="bi bi-file-earmark-pdf me-2"></i>PDF (DOMPDF)
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                         <a href="{{ route('tarefa.create') }}" class="btn btn-success fw-bold">
                             <i class="bi bi-plus-circle me-2"></i> Nova Tarefa
                         </a>

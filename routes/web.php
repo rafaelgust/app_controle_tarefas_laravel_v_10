@@ -24,6 +24,7 @@ Auth::routes(['verify' => true]);
 
 
 Route::get('tarefa/export/{extensao}', [TarefaController::class, 'exportacao'])->name('tarefa.export');
+Route::get('tarefa/exportar', [TarefaController::class, 'exportar'])->name('tarefa.exportar');
 
 Route::middleware(['verified'])
     ->group(function () {

@@ -9,8 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
-use Mpdf\Mpdf;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class TarefaController extends Controller
 {
     public function __construct(){
@@ -193,5 +192,12 @@ class TarefaController extends Controller
         }
 
         return redirect()->back()->with('error', 'Tipo de exportação inválido.');
+    }
+
+    public function exportar()
+    {
+        $tarefas = auth()->user()->tarefas;
+        $pdf = Pdf::loadView('tarefa.pdf', ['tarefas' => $tarefas]);
+        return $pdf->download('tarefas.pdf');
     }
 }
