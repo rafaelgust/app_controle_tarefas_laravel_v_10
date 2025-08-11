@@ -4,10 +4,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        @page {
-            size: A4;
-            margin: 2cm;
-        }
         body {
             background-color: #fff;
             padding: 0;
