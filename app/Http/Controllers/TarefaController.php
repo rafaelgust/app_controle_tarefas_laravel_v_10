@@ -182,8 +182,16 @@ class TarefaController extends Controller
         }
     }
 
-    public function exportacao()
+    public function exportacao($extensao)
     {
-        return Excel::download(new TarefasExport, 'tarefas.xlsx');
+        $data_hora = now()->format('Ymd_His');
+        $nome_arquivo = 'tarefas_' . $data_hora;
+        if ($extensao === 'csv') {
+            return Excel::download(new TarefasExport, $nome_arquivo . '.csv');
+        } else if ($extensao === 'xlsx') {
+            return Excel::download(new TarefasExport, $nome_arquivo . '.xlsx');
+        } else {
+            return redirect()->back()->with('error', 'Tipo de exportação inválido.');
+        }
     }
 }
