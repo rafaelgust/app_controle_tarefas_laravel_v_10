@@ -30,7 +30,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('tarefa.exportar') }}">
+                                    <a class="dropdown-item" href="{{ route('tarefa.exportar') }}" target="_blank">
                                         <i class="bi bi-file-earmark-pdf me-2"></i>PDF (DOMPDF)
                                     </a>
                                 </li>
