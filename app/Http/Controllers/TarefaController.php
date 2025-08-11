@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
+use Mpdf\Mpdf;
 
 class TarefaController extends Controller
 {
@@ -185,13 +186,12 @@ class TarefaController extends Controller
     public function exportacao($extensao)
     {
         $data_hora = now()->format('Ymd_His');
-        $nome_arquivo = 'tarefas_' . $data_hora;
-        if ($extensao === 'csv') {
-            return Excel::download(new TarefasExport, $nome_arquivo . '.csv');
-        } else if ($extensao === 'xlsx') {
-            return Excel::download(new TarefasExport, $nome_arquivo . '.xlsx');
-        } else {
-            return redirect()->back()->with('error', 'Tipo de exportação inválido.');
+        $nome_arquivo = 'tarefas_' . $data_hora . '.'  . $extensao;
+
+        if(in_array($extensao, ['csv', 'xlsx', 'pdf'])) {
+            return Excel::download(new TarefasExport, $nome_arquivo);
         }
+
+        return redirect()->back()->with('error', 'Tipo de exportação inválido.');
     }
 }

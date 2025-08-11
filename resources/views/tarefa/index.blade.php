@@ -15,6 +15,9 @@
                         <a href="{{ route('tarefa.export', ['extensao' => 'xlsx']) }}" class="btn btn-primary fw-bold">
                             <i class="bi bi-file-earmark-spreadsheet me-2"></i> Exportar Tarefas em XLSX
                         </a>
+                        <a href="{{ route('tarefa.export', ['extensao' => 'pdf']) }}" class="btn btn-primary fw-bold">
+                            <i class="bi bi-file-earmark-spreadsheet me-2"></i> Exportar Tarefas em PDF
+                        </a>
                         <a href="{{ route('tarefa.create') }}" class="btn btn-success fw-bold">
                             <i class="bi bi-plus-circle me-2"></i> Nova Tarefa
                         </a>
