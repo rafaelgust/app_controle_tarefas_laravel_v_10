@@ -56,4 +56,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new VerificarEmailNotification($this->name));
     }
+
+    public function tarefas(){
+        //hasMany (tem muitos users na tabela tarefas)
+        return $this->hasMany(Tarefa::class);
+    }
 }

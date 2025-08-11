@@ -12,6 +12,9 @@ class TarefasExport implements FromCollection
     */
     public function collection()
     {
-        return Tarefa::all();
+        //return Tarefa::all(); aqui pega todas as tarefas
+
+        //filtrar pelo usuario autenticado
+        return auth()->user()->tarefas;
     }
 }
